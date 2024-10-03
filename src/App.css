@@ -1,5 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+
 .App {
   text-align: center;
+  background-image: url("./assets/Photographers.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Fredoka", sans-serif;
+  overflow: hidden; /* Prevent horizontal scroll */
+  position: relative; /* Needed for pseudo-element positioning */
+}
+
+.App::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1; 
+}
+
+.title {
+  color: #fff;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5vw; /* Responsive font size */
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 .App-logo {
@@ -7,32 +42,124 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.inputs-container {
+  width: 100vw; /* Full viewport width */
+  height: 50vh; /* Adjusted for better layout */
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  overflow: hidden; /* Prevent horizontal scroll */
+}
+
+.title, .inputs-container {
+  position: relative; 
+  z-index: 2; 
+}
+
+.input-search {
+  width: 100%; /* Responsive width */
+  max-width: 500px; /* Limit maximum width */
+  height: 50px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 5px 1rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2); 
+  transition: all 0.3s ease;
+  font-size: 16px; 
+  outline: none; 
+}
+
+/* Placeholder styling */
+.input-search::placeholder {
+  color: rgba(255, 255, 255, 0.6); 
+}
+
+/* Focus effect */
+.input-search:focus {
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+}
+
+.btn-search-img {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.search-btn {
+  width: 50px;
+  height: 50px;
+}
+
+.input-search::placeholder {
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid */
+  gap: 10px;
+  padding: 20px;
+  overflow: hidden; /* Prevent horizontal scroll */
+}
+
+.gallery-item {
+  position: relative;
+  height: 150px; 
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
   color: white;
+  padding: 10px;
+  text-align: center;
+  transition: background 0.3s;
 }
 
-.App-link {
-  color: #61dafb;
+.overlay:hover {
+  background: rgba(0, 0, 0, 0.7);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.gallery-link {
+  display: block;
+  height: 100%;
+}
+
+/* Media Queries for Additional Responsiveness */
+@media (max-width: 768px) {
+  .title {
+    font-size: 6vw; /* Adjust font size for smaller screens */
   }
-  to {
-    transform: rotate(360deg);
+
+  .inputs-container {
+    height: 20vh; /* Increase height for smaller screens */
+  }
+
+  .input-search {
+    width: 90%; /* Full width on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 8vw; /* Further adjust font size for very small screens */
+  }
+
+  .input-search {
+    height: 40px; /* Smaller height for input */
+  }
+
+  .inputs-container {
+    height: 50vh; /* Adjusted for better layout */
   }
 }
