@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 
+
 .App {
   text-align: center;
-  background-image: url("./assets/Photographers.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background-image: url("./assets/Photographers.webp"),url("./assets/Image2.jpg"); */
+  background-repeat: no-repeat, no-repeat, no-repeat; /* No repeat for each image */
+  background-size: cover, cover, cover; /* Adjust sizes for each image */
+  background-position: center, center, center; /* Center each image */
   width: 100vw; /* Full viewport width */
   height: 100vh; /* Full viewport height */
   box-sizing: border-box;
@@ -13,7 +15,23 @@
   font-family: "Fredoka", sans-serif;
   overflow: hidden; /* Prevent horizontal scroll */
   position: relative; /* Needed for pseudo-element positioning */
+  transition: background-image 5s ease-in-out;
+  /* Animation properties */
+  animation: zoomIn 15s infinite; /* Adjust the duration and repetition as needed */
 }
+
+@keyframes zoomIn {
+  0% {
+    background-size: 110%; /* Start slightly zoomed in */
+  }
+  50% {
+    background-size: 120%; /* Max zoom in */
+  }
+  100% {
+    background-size: 110%; /* Return to start */
+  }
+}
+
 
 .App::before {
   content: "";
@@ -95,7 +113,7 @@
 
 .input-search::placeholder {
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: capitalize;
 }
 
