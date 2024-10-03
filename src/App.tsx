@@ -12,34 +12,36 @@ import IMG4 from './assets/Image4.jpg';
 import IMG5 from './assets/Image5.jpg';
 import IMG6 from './assets/Image6.jpg';
 
-
 function App() {
   const [image, setImage] = useState("");
   const [imageList, setImageListState] = useState([]); // Local state for current image list
   const [backgroundIndex, setBackgroundIndex] = useState(0);
   const dispatch = useDispatch();
-  const cachedImages = useSelector((state:any) => state?.imageList?.images); // Get cached images from Redux store
+  const cachedImages = useSelector((state: any) => state?.imageList?.images); // Get cached images from Redux store
 
-  const images = [
-    IMG1,
-    IMG2,
-    IMG3,
-    IMG4,
-    IMG5,
-    IMG6
-  ];
+  const images = [IMG1, IMG2, IMG3, IMG4, IMG5, IMG6];
 
+  // Preload images
   useEffect(() => {
+    const preloadImages = (imageArray: any) => {
+      imageArray.forEach((src: any) => {
+        const img = new Image();
+        img.src = src;
+      });
+    };
+
+    preloadImages(images);
+
     const interval = setInterval(() => {
       setBackgroundIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 5000); // Change every 5 seconds
 
     return () => clearInterval(interval); // Clean up the interval on component unmount
-  }, []);
+  }, [images]);
 
   const backgroundImage = images[backgroundIndex];
 
-  function handleChange(event:any) {
+  function handleChange(event: any) {
     setImage(event.target.value);
   }
 
