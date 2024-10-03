@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 
-
 .App {
   text-align: center;
   /* background-image: url("./assets/Photographers.webp"),url("./assets/Image2.jpg"); */
@@ -15,23 +14,8 @@
   font-family: "Fredoka", sans-serif;
   overflow: hidden; /* Prevent horizontal scroll */
   position: relative; /* Needed for pseudo-element positioning */
-  transition: background-image 5s ease-in-out;
-  /* Animation properties */
-  animation: zoomIn 15s infinite; /* Adjust the duration and repetition as needed */
+  transition: background-image 5s ease-in-out; /* Smooth transition for background changes */
 }
-
-@keyframes zoomIn {
-  0% {
-    background-size: 110%; /* Start slightly zoomed in */
-  }
-  50% {
-    background-size: 120%; /* Max zoom in */
-  }
-  100% {
-    background-size: 110%; /* Return to start */
-  }
-}
-
 
 .App::before {
   content: "";
@@ -40,7 +24,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
   z-index: 1; 
 }
 
@@ -55,9 +39,16 @@
   text-transform: uppercase;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@keyframes zoomIn {
+  0% {
+    background-size: 110%; /* Start slightly zoomed in */
+  }
+  50% {
+    background-size: 120%; /* Max zoom in */
+  }
+  100% {
+    background-size: 110%; /* Return to start */
+  }
 }
 
 .inputs-container {
@@ -169,8 +160,12 @@
 }
 
 @media (max-width: 480px) {
+  .App{
+    background-size: auto;
+    padding: 0.5rem;
+  }
   .title {
-    font-size: 8vw; /* Further adjust font size for very small screens */
+    font-size: 8dvw; /* Further adjust font size for very small screens */
   }
 
   .input-search {
@@ -180,4 +175,5 @@
   .inputs-container {
     height: 50vh; /* Adjusted for better layout */
   }
+
 }
